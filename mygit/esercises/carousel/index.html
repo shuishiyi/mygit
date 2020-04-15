@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="animate.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .slider {
+            width: 500px;
+            height: 250px;
+            position: relative;
+            margin: auto;
+            top: 20px;
+            overflow: hidden;
+        }
+        .slider .list {
+            list-style: none;
+            
+            position: absolute;
+        }
+        .slider .list .item {
+            float: left;
+
+        }
+        .slider .list .item img {
+            display: block;
+            width: 500px;
+            height: 250px;
+        }
+        .slider .prev,
+        .slider .next {
+            background: pink;
+            position: absolute;
+            top: 50%;
+        }
+        .prev {
+            left: 0;
+        }
+        .next {
+            right: 0;
+        }
+        .slider .page {
+            bottom: 20px;
+            left: 45%;
+            height: 24px;
+            position: absolute;
+            background: black;
+        }
+        .slider .page .bullet {
+            display: block;
+            width: 16px;
+            height: 16px;
+            float: left;
+            margin: 2px;
+            padding: 2px;
+            background: pink;
+        }
+        .slider .page .bullet.focus{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <ul class="list">
+            <li class="item"><img src="img/1.jpg" alt=""></li>
+            <li class="item"><img src="img/2.jpg" alt=""></li>
+            <li class="item"><img src="img/3.jpg" alt=""></li>
+            <li class="item"><img src="img/4.jpg" alt=""></li>
+        </ul>
+        <button class="prev">prev</button>
+        <button class="next">next</button>
+        <ul class="page">
+            <li class="bullet focus">1</li>
+            <li class="bullet">2</li>
+            <li class="bullet">3</li>
+            <li class="bullet">4</li>
+        </ul>
+    </div>
+       
+    <script>
+        var currIndex;
+        var li_1 = document.querySelector('.slider .list .item:first-of-type')
+        var copy_1 = li_1.cloneNode(true);
+        var li_last = document.querySelector('.slider .list .item:last-of-type')
+        var copy_last = li_last.cloneNode(true);
+        var list = document.querySelector(".list");
+        list.appendChild(copy_1);
+        list.insertBefore(copy_last,li_1);
+        var item = document.querySelectorAll(".item");
+        var liWidth = item[0].offsetWidth;
+        var len = item.length;
+        list.style.width = liWidth * len +'px';
+        list.style.left = -liWidth + 'px';
+        var id;
+
+        function init(){
+            currIndex = 1;
+            // console.log(document.querySelector('prev'));
+
+            document.querySelector('.prev').onclick = function(){
+                sliderPrve();
+            }
+            
+            document.querySelector('.next').onclick = function(){
+                sliderNext();
+            }
+
+            var bullets = document.querySelectorAll('.bullet');
+            
+            for (var i = 0; i < bullets.length; i ++){
+                bullets[i].index = i;                    //!!!!!
+                bullets[i].onclick = function(){
+                    currIndex = this.index + 1;
+                    console.log(this.index);
+                    sliderTo(currIndex);
+                }
+            }
+
+            document.querySelector(".slider").onmouseover = function(){
+                stop();
+            }
+
+            document.querySelector(".slider").onmouseout = function(){
+                auto();
+            }
+           //index:0 1234 5(3 0123 0)
+        }
+        function sliderPrve(){
+            currIndex--;
+            sliderTo(currIndex);
+        }
+        function sliderNext(){
+            currIndex++;
+            sliderTo(currIndex);
+            
+        }
+        function sliderTo(index){
+            if(index == len){
+                list.style.left = -liWidth + 'px'
+                currIndex = index = 2;
+            }
+            if(index == -1){
+                list.style.left = -(len - 2)*liWidth + 'px'
+                currIndex = index = len - 3;
+            }
+            // list.style.left = -liWidth*index + 'px'
+            
+            var left = parseInt(-index*liWidth);
+            clearInterval(list.timeID);
+            list.timeID = setInterval(function(){
+            var left1 = getComputedStyle(list).left;    
+            var current = parseInt(left1);
+            var speed = (left - current)/30;
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+            list.style.left = current + speed + 'px';
+            },20)
+
+            var focusIndex;
+            if(index == 0){
+                focusIndex = 3;
+            }else if(index == 5){
+                focusIndex = 0;
+            }else{
+                focusIndex = index - 1;
+            }
+            document.querySelector(".focus").className = "bullet";
+            document.querySelectorAll(".bullet")[focusIndex].className = "bullet focus";
+
+            
+            
+        }
+        function auto(){
+            clearInterval(id)
+            id = setInterval(function(){
+                sliderNext()
+            },2000)
+        }
+        function stop(){
+            clearInterval(id);
+        }
+            
+
+        init();
+        
+
+    </script>
+</body>
+</html>
