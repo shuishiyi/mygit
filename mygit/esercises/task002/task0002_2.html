@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <input id="text" type="text">
+        <input id="btn" type="button">
+        <p id = "show"></p>
+        <script>
+
+            formatDuring = function(mss) {
+                var days = parseInt(mss / (1000 * 60 * 60 * 24));
+                var hours = parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = parseInt((mss % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = (mss % (1000 * 60)) / 1000;
+                return days + "天" + hours + "小时" + minutes + "分钟" + seconds + "秒";
+            }
+            
+            var oText = document.getElementById("text");
+            var btn = document.getElementById("btn");
+            var oShow = document.getElementById("show");
+            
+            
+            window.onload = function(){
+                btn.onclick = function(){
+                    var a = setInterval(function(){
+                        var d = new Date();
+                        var time = d.getTime();
+                        var input = Date.parse(oText.value);
+                        var dif = input - time;
+                        oShow.innerHTML = formatDuring(dif);
+                        if(dif <= 0){
+                            clearInterval(a);
+                        }                        
+                    },1000)
+                }
+            }
+
+            
+        </script>
+    </body>
+</html>

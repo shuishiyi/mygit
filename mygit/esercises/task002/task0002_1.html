@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <input type = "text" id = "text">
+        <input type = "button" id = "btn">
+        <script>
+            var btn = document.getElementById("btn");
+            
+            function oArr(arr){
+                var array = [];
+                for (var i = 0; i < arr.length; i++) {
+                    if (array .indexOf(arr[i]) === -1) {
+                        array .push(arr[i])
+                    }
+                }
+                return array;
+            }
+
+
+            window.onload = function(){
+                btn.onclick = function(){
+                    var text = document.getElementById("text")           //取得元素引用
+                    var node = document.createElement("p");              //创建元素节点
+                    document.body.appendChild(node);                     //插入元素节点
+                    var content = oArr(text.value.split(","));           //返回数组
+                    var textNode = document.createTextNode(content);     //创建文本节点
+                    node.appendChild(textNode);                          //插入文本节点
+                }
+            }
+        </script>
+    </body>
+</html>

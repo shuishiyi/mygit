@@ -1,0 +1,16 @@
+innerHTML   标签间的内容
+
+按钮取文本框的值：
+1.新建元素节点 //document.createElement()
+2.新建文本节点 //document.createTextNode()
+3.把文本节点插到元素节点 //元素节点.appendChild(文本节点)
+
+父元素设置了长宽子元素不能撑开会溢出。获取设置宽 offsetWidth。
+子绝父相
+
+htdocs 服务器分路径
+
+同步：自上而下按顺序
+异步：
+
+ 

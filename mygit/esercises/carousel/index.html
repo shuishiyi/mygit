@@ -101,7 +101,6 @@
 
         function init(){
             currIndex = 1;
-            // console.log(document.querySelector('prev'));
 
             document.querySelector('.prev').onclick = function(){
                 sliderPrve();
@@ -153,8 +152,8 @@
             
             var left = parseInt(-index*liWidth);
             clearInterval(list.timeID);
-            list.timeID = setInterval(function(){
-            var left1 = getComputedStyle(list).left;    
+            list.timeID = setInterval(function(){       //!!!!!
+            var left1 = getComputedStyle(list).left;    //!!!!!
             var current = parseInt(left1);
             var speed = (left - current)/30;
             speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
