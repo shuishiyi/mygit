@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <input type="text" id="input">
+        <ul id="ul"></ul>
+        <script>
+            function getData(data){
+                var script = document.querySelector('#jsonp');
+                script.parentNode.removeChild(script);
+                var ul = document.getElementById('ul');
+                ul.innerHTML = '';
+                console.log(data.g);  
+                for(var i = 0; i < data.g.length; i++){
+                    var li = document.createElement('li');
+                    li.innerHTML = data.g[i].q;
+                    ul.appendChild(li);
+                }          
+            }
+            function getList(wd){
+                var script = document.createElement('script');
+                script.id = 'jsonp';
+                script.src = 'https://www.baidu.com/sugrec?pre=1&p=3&ie=utf-8&json=1&prod=pc&from=pc_web&sugsid=1454,21097,31342,30901,31229,30823,31085,31163&wd=' + wd + '&req=2&bs=t&csor=1&cb=getData'
+                document.body.appendChild(script);
+            }
+            
+            
+            var input = document.getElementById('input');
+            input.onclick = function(){    
+                var wd = document.getElementById('input').value;           
+                getList(wd);                
+            }
+        </script>
+    </body>
+</html>
