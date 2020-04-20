@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+/*             const promise = new Promise(function(resolve.reject)){
+                if(){
+                    resolve();//改变promise对象状态
+                }else{
+                    reject();
+                }
+            }
+            promise.then(function(){   //接受两个回调函数,成功(失败)时调用
+
+            },function(){
+
+            }); */
+
+
+
+
+            var promise = new Promise(function(resolve,reject){
+                setTimeout(function(){
+                    var num = Math.floor(Math.random() * 100);
+                    if (num % 2 === 0) {
+                        resolve(num);
+                    }else{
+                        reject(num);
+                    }
+                }, 3000)
+            })
+            promise.then(function(num){
+                console.log('resolve' + num);
+            }).catch(function(num){
+                console.log('reject' + num);
+            })
+
+        </script>
+    </body>
+</html>

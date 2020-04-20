@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="./jquery.magnifier.css">
+</head>
+
+<body>
+    <div class="magnifier">
+        <div class="left">
+            <img src="./img/small.jpg" alt="" class="small">
+            <div class="focus"></div>
+            <div class="mark"></div>
+        </div>
+        <div class="right">
+            <!-- <img src="./img/big.jpg" alt="" class="big"> -->
+        </div>
+    </div>
+    <script type="text/javascript" src="../jquery/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="jquery,magnifier.js"></script>
+    <script>
+        $('.magnifier').magnifier();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+.magnifier .left {
+    width: 520px;
+    height: 280px;
+    float: left;
+    position: relative;
+}
+
+.magnifier .left .mark {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: black;
+    opacity: 0;
+}
+
+.magnifier .left .focus {
+    width: 50px;
+    height: 50px;
+    background: pink;
+    opacity: 0.5;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+}
+
+.magnifier .right {
+    width: 200px;
+    height: 200px;
+    background-image: url('./img/big.jpg');
+    float: left;
+    margin: 20px;
+    display: none;
+}

@@ -6,11 +6,46 @@ innerHTML   标签间的内容
 3.把文本节点插到元素节点 //元素节点.appendChild(文本节点)
 
 父元素设置了长宽子元素不能撑开会溢出。获取设置宽 offsetWidth。
-子绝父相
+
+子绝父相(父亲要有位置)
+绝对定位:向上查找最近有定位的父元素为标准（不占位置
+相对定位不可层叠
+都相当于浮起来，但一个删除原来位置，一个不删
+
+清除（父元素受）浮动（的影响）：子元素末尾增加空标签，给clear属性。缺点：多出很多无意义空标签
+
+        （父元素）触发BFC（块级格式化上下文）：
+        float 除了none以外的值。缺点：影响其他盒子
+ 
+        overflow 除了visible 以外的值（hidden，auto，scroll ） 。缺点：没啥缺点
+ 
+        display (table-cell，table-caption，inline-block) 变成块元素
+ 
+        position（absolute，fixed）  缺点：不占位置
+ 
+        fieldset元素
+
+
+
 
 htdocs 服务器分路径
 
 同步：自上而下按顺序
 异步：
 
+
+ajax:异步加载 通过对象xhr.get(post)方法
+解决跨域方法：jsonp 通过动态<script>标签发送jsonp请求
+             cors(跨域资源共享)
+
+函数的参数按值传递?
+是函数会首先被提升（到其作用域的顶部），然后才是变量
+
+this
+1.new
+2.call,apply,bind
+3.调用
+4.默认(全局)
+
+$(选择器,作用域)
  
